@@ -1,0 +1,7 @@
+Bundled data: qqwry.dat (IPv4, Simplified Chinese)
+Release: 2026-10-28
+Source: https://github.com/nmgliangwei/qqwry/releases/tag/2026-10-28
+SHA-256: c40813d90c5c8e54ec9741bbb891e40a5a5984c3397c1cb48b42c1374f98b74c
+Upstream repository license: GPL-3.0; see META-INF/licenses/qqwry-dat-GPL-3.0.txt.
+The upstream project states that this DAT is regenerated from CZDB data and
+that use of the original community IP database requires authorization from CZ88.
