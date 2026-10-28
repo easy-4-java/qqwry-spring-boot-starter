@@ -89,6 +89,7 @@ public class QQWry {
 			out.write(buffer, 0, r);
 		}
 		data = out.toByteArray();
+		validateDataHeader();
 		indexHead = readLong32(0);
 		indexTail = readLong32(4);
 	}
@@ -101,6 +102,7 @@ public class QQWry {
 	 */
 	public QQWry(final byte[] data) {
 		this.data = data;
+		validateDataHeader();
 		indexHead = readLong32(0);
 		indexTail = readLong32(4);
 	}
@@ -131,18 +133,24 @@ public class QQWry {
 		return readIP(ip, idx);
 	}
 
-	private long getMiddleOffset(final long begin, final long end) {
-		long records = (end - begin) / INDEX_RECORD_LENGTH;
-		records >>= 1;
-		if (records == 0) {
-			records = 1;
+	private void validateDataHeader() {
+		if (data == null || data.length < 8 + INDEX_RECORD_LENGTH) {
+			throw new IllegalArgumentException("Invalid qqwry.dat index header: file is too short");
 		}
-		return begin + (records * INDEX_RECORD_LENGTH);
+		final long head = readLong32(0);
+		final long tail = readLong32(4);
+		if (head < 8 || tail < head || tail > data.length - INDEX_RECORD_LENGTH
+				|| (tail - head) % INDEX_RECORD_LENGTH != 0) {
+			throw new IllegalArgumentException("Invalid qqwry.dat index header: offsets are outside the data file");
+		}
 	}
 
 	private QIndex readIndex(final int offset) {
 		final long min = readLong32(offset);
 		final int record = readInt24(offset + 4);
+		if (record < 8 || record > data.length - 5) {
+			throw new IllegalArgumentException("Invalid qqwry.dat index record: data offset is outside the file");
+		}
 		final long max = readLong32(record);
 		return new QIndex(min, max, record);
 	}
@@ -227,21 +235,18 @@ public class QQWry {
 	}
 
 	private QIndex searchIndex(final long ip) {
-		long head = indexHead;
-		long tail = indexTail;
-		while (tail > head) {
-			final long cur = getMiddleOffset(head, tail);
-			final QIndex idx = readIndex((int) cur);
+		long low = 0;
+		long high = (indexTail - indexHead) / INDEX_RECORD_LENGTH;
+		while (low <= high) {
+			final long middle = low + (high - low) / 2;
+			final QIndex idx = readIndex((int) (indexHead + middle * INDEX_RECORD_LENGTH));
 			if ((ip >= idx.minIP) && (ip <= idx.maxIP)) {
 				return idx;
 			}
-			if ((cur == head) || (cur == tail)) {
-				return idx;
-			}
 			if (ip < idx.minIP) {
-				tail = cur;
+				high = middle - 1;
 			} else if (ip > idx.maxIP) {
-				head = cur;
+				low = middle + 1;
 			} else {
 				return idx;
 			}
