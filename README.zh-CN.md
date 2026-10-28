@@ -7,7 +7,7 @@
 **Spring Boot Starter，集成 qqwry**
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.easy4j/qqwry-spring-boot-starter)](https://github.com/easy-4-java/qqwry-spring-boot-starter)
-[![Java](https://img.shields.io/badge/Java-17-orange)](#3-运行要求与兼容性)
+[![Java](https://img.shields.io/badge/Java-8-orange)](#3-运行要求与兼容性)
 [![License](https://img.shields.io/badge/license-Apache-2.0-green)](https://www.apache.org/licenses/LICENSE-2.0)
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
@@ -21,8 +21,8 @@
 
 ---
 
-> **当前版本**：`2.0.1-SNAPSHOT`<br>
-> **JDK 基线**：`17`<br>
+> **当前版本**：`2.7.x.20260630-SNAPSHOT`<br>
+> **JDK 基线**：`8`<br>
 > **Group ID**：`io.github.easy4j`<br>
 > **Artifact ID**：`qqwry-spring-boot-starter`<br>
 > **许可证**：Apache License 2.0<br>
@@ -36,8 +36,8 @@
 | 类型 | Spring Boot Starter |
 | 消费方 | 使用 qqwry 的 Spring Boot 应用 |
 | 核心能力 | 自动装配、属性绑定、开箱即用的 qqwry Bean |
-| JDK | `17` |
-| 坐标 | `io.github.easy4j:qqwry-spring-boot-starter:2.0.1-SNAPSHOT` |
+| JDK | `8` |
+| 坐标 | `io.github.easy4j:qqwry-spring-boot-starter:2.7.x.20260630-SNAPSHOT` |
 | 配置前缀 | `qqwry` |
 
 ## 2. 核心能力
@@ -52,8 +52,8 @@
 
 | 依赖 | 最低版本 | 证据来源 |
 |---|---:|---|
-| JDK | `17` | `pom.xml` |
-| Spring Boot | `2.6.0` | `pom.xml` parent |
+| JDK | `8` | `pom.xml` |
+| Spring Boot | `2.7.18` | `pom.xml` parent |
 | Maven | `3.6+` | Maven Enforcer |
 
 ## 4. 自动装配
@@ -75,7 +75,7 @@ Starter 自动装配以下 Bean：
 <dependency>
     <groupId>io.github.easy4j</groupId>
     <artifactId>qqwry-spring-boot-starter</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
+    <version>2.7.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
 

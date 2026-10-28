@@ -7,7 +7,7 @@
 **Spring Boot Starter for qqwry**
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.easy4j/qqwry-spring-boot-starter)](https://github.com/easy-4-java/qqwry-spring-boot-starter)
-[![Java](https://img.shields.io/badge/Java-17-orange)](#3-requirements-and-compatibility)
+[![Java](https://img.shields.io/badge/Java-8-orange)](#3-requirements-and-compatibility)
 [![License](https://img.shields.io/badge/license-Apache-2.0-green)](https://www.apache.org/licenses/LICENSE-2.0)
 
 [简体中文](./README.zh-CN.md) | [English](./README.md)
@@ -21,8 +21,8 @@
 
 ---
 
-> **Current Version**：`2.0.1-SNAPSHOT`<br>
-> **JDK Baseline**：`17`<br>
+> **Current Version**：`2.7.x.20260630-SNAPSHOT`<br>
+> **JDK Baseline**：`8`<br>
 > **Group ID**：`io.github.easy4j`<br>
 > **Artifact ID**：`qqwry-spring-boot-starter`<br>
 > **License**：Apache License 2.0<br>
@@ -36,8 +36,8 @@
 | Type | Spring Boot Starter |
 | Consumers | Spring Boot applications using qqwry |
 | Core Capabilities | auto-configuration, property binding, ready-to-use beans for qqwry |
-| JDK | `17` |
-| Coordinates | `io.github.easy4j:qqwry-spring-boot-starter:2.0.1-SNAPSHOT` |
+| JDK | `8` |
+| Coordinates | `io.github.easy4j:qqwry-spring-boot-starter:2.7.x.20260630-SNAPSHOT` |
 | Config Prefix | `qqwry` |
 
 ## 2. Core Capabilities
@@ -52,8 +52,8 @@
 
 | Dependency | Minimum | Evidence |
 |---|---:|---|
-| JDK | `17` | `pom.xml` |
-| Spring Boot | `2.6.0` | `pom.xml` parent |
+| JDK | `8` | `pom.xml` |
+| Spring Boot | `2.7.18` | `pom.xml` parent |
 | Maven | `3.6+` | Maven Enforcer |
 
 ## 4. Auto-configuration
@@ -75,7 +75,7 @@ Auto-configuration registration:
 <dependency>
     <groupId>io.github.easy4j</groupId>
     <artifactId>qqwry-spring-boot-starter</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
+    <version>2.7.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
 
