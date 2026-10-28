@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.github.easy4j.qqwry.spring.boot.ext;
+package com.github.hiwepy.qqwry.spring.boot.ext;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -117,6 +117,57 @@ class QQWryTest {
     void testFindIPAboveMaximumRange() {
         IPZone zone = qqwry.findIP("255.255.255.255");
         assertThat(zone.getIp()).isEqualTo("255.255.255.255");
+    }
+
+    @Test
+    @DisplayName("A single index record is searchable")
+    void testSingleIndexRecord() {
+        byte[] data = new byte[23];
+        writeInt32(data, 0, 16);
+        writeInt32(data, 4, 16);
+        writeInt32(data, 8, 0xffffffffL);
+        data[12] = 'A';
+        data[14] = 'B';
+        data[20] = 8;
+
+        IPZone zone = new QQWry(data).findIP("1.2.3.4");
+        assertThat(zone.getMainInfo()).isEqualTo("A");
+        assertThat(zone.getSubInfo()).isEqualTo("B");
+    }
+
+    @Test
+    @DisplayName("Rejects an index header outside the data file")
+    void testRejectsInvalidIndexHeader() {
+        byte[] data = new byte[8];
+        writeInt32(data, 0, 672264329);
+        writeInt32(data, 4, 672264336);
+
+        assertThatThrownBy(() -> new QQWry(data))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("qqwry.dat")
+                .hasMessageContaining("index");
+    }
+
+    @Test
+    @DisplayName("Rejects an index record pointing outside the data file")
+    void testRejectsInvalidRecordOffset() {
+        byte[] data = new byte[15];
+        writeInt32(data, 0, 8);
+        writeInt32(data, 4, 8);
+        data[12] = (byte) 0xff;
+        data[13] = (byte) 0xff;
+        data[14] = (byte) 0xff;
+
+        assertThatThrownBy(() -> new QQWry(data).findIP("1.2.3.4"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("qqwry.dat")
+                .hasMessageContaining("record");
+    }
+
+    private static void writeInt32(byte[] data, int offset, long value) {
+        for (int i = 0; i < 4; i++) {
+            data[offset + i] = (byte) (value >>> (8 * i));
+        }
     }
 
     @Test

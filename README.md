@@ -159,6 +159,8 @@ mvn -pl qqwry-spring-boot-starter -am test
 
 This project is licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
+The bundled `qqwry.dat` comes from the [nmgliangwei/qqwry repository](https://github.com/nmgliangwei/qqwry). It is third-party data, separate from the Apache-licensed code. Its pinned release, SHA-256 and upstream license are recorded in `META-INF/qqwry-data.txt` inside the JAR. Check the upstream CZ88 authorization terms before redistributing or publishing this data.
+
 ---
 
 <div align="center">

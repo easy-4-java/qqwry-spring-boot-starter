@@ -13,9 +13,9 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.github.easy4j.qqwry.spring.boot;
+package com.github.hiwepy.qqwry.spring.boot;
 
-import io.github.easy4j.qqwry.spring.boot.ext.QQWry;
+import com.github.hiwepy.qqwry.spring.boot.ext.QQWry;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
