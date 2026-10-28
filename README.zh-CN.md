@@ -159,6 +159,8 @@ mvn -pl qqwry-spring-boot-starter -am test
 
 本项目采用 [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0) 许可证。
 
+随包提供的 `qqwry.dat` 来自 [nmgliangwei/qqwry 仓库](https://github.com/nmgliangwei/qqwry)，是与 Apache 许可证下的代码分别授权的第三方数据。固定版本、SHA-256 和上游许可证记录在 JAR 内的 `META-INF/qqwry-data.txt`。重新分发或发布该数据前，需核对上游及纯真的授权条件。
+
 ---
 
 <div align="center">
